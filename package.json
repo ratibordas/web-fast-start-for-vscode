@@ -2,12 +2,20 @@
 	"name": "web-fast-start",
 	"displayName": "Web Fast Start",
 	"description": "The fast creating a basic structure for your website",
-	"version": "0.0.1",
+	"version": "1.0.0",
+	"publisher": "ratibor",
+	"galleryBanner": {
+        "color": "#0000FF",
+        "theme": "dark"
+    },
+	"author": {
+    "name": "Ratibor Shugaev"
+  },
 	"engines": {
 		"vscode": "^1.45.0"
 	},
 	"categories": [
-		"Other"
+		"Other", "Snippets"
 	],
 	"activationEvents": [
 		"onCommand:web-fast-start.webFastStart"
@@ -21,10 +29,15 @@
 			}
 		]
 	},
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/ratibordas/web-fast-start-for-vscode"
+  },
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
 		"test": "node ./test/runTest.js"
+		
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.45.0",

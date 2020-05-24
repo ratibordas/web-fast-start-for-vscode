@@ -18,3 +18,5 @@ Also, you can add some useful code in your style.css and script.js. Just use th
 
 ### Enjoy!
 
+
+Please, leave feedback: https://marketplace.visualstudio.com/items?itemName=ratibor.web-fast-start&ssr=false#review-details

@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+
 const htmlContent = `<!DOCTYPE html>
 <html lang="auto">
 <head>
@@ -81,7 +82,7 @@ textarea,
 select {
   font: inherit;
 }
-`
+`;
 const jsContent = `"use strict"`;
 
 
@@ -94,54 +95,68 @@ function activate(context) {
 	console.log('Congratulations, your extension "web-fast-start" is now active!');
 
 
-	let disposable = vscode.commands.registerCommand('web-fast-start.webFastStart',  function () {
+	let disposable = vscode.commands.registerCommand('web-fast-start.webFastStart', function () {
 		const fs = require("fs");
 		const path = require("path");
 		const folderPath = vscode.workspace.workspaceFolders[0].uri
 			.toString()
 			.split(":")[1];
-     
-			
-			
 
-	  fs.writeFile(path.join(folderPath, "index.html"), htmlContent, err => {
+		fs.writeFile(path.join(folderPath, "index.html"), htmlContent, err => {
 			if (err) {
 				return vscode.window.showErrorMessage(
 					"Failed to create structure!"
 				);
 			}
-			vscode.window.showInformationMessage('The structure created!');
+			vscode.window.showInformationMessage('The structure created!')
 
 		});
-	 
+
+
+       // create css structure
+
+		const wsedit = new vscode.WorkspaceEdit();
+		const wsPath = vscode.workspace.workspaceFolders[0].uri.fsPath; 
+		const filePath = vscode.Uri.file(wsPath + '/style/style.css');
+		wsedit.createFile(filePath, { ignoreIfExists: true });
+		vscode.workspace.applyEdit(wsedit);
+		
+
+		fs.writeFile(filePath.fsPath, cssContent, err => {
+			if (err) {
+				// return vscode.window.showErrorMessage("Failed to create structure!");
+				return console.log("Failed to create structure!")
+			}
+			vscode.window.showInformationMessage('The structure created!')
+		});
 
 		
-const wsedit = new vscode.WorkspaceEdit();
-const wsPath = vscode.workspace.workspaceFolders[0].uri.fsPath; // gets the path of the first workspace folder
-const filePath = vscode.Uri.file(wsPath + '/style/style.css');
-wsedit.createFile(filePath, { ignoreIfExists: true });
-vscode.workspace.applyEdit(wsedit);
-		
-		fs.writeFile(filePath.fsPath, cssContent, err => {
-		      	if (err) {
-				return vscode.window.showErrorMessage(
-					"Failed to create structure!"
-				);
+
+
+
+
+
+
+
+
+
+
+
+
+		// create js structure	
+
+		const filePathJs = vscode.Uri.file(wsPath + '/script/script.js');
+		wsedit.createFile(filePathJs, {
+			ignoreIfExists: true
+		});
+		vscode.workspace.applyEdit(wsedit);
+
+		fs.writeFile(filePathJs.fsPath, jsContent, err => {
+			if (err) {
+				return console.log("Failed to create structure!")
 			}
 			vscode.window.showInformationMessage('The structure created!')
- })
-	
-const filePathJs = vscode.Uri.file(wsPath + '/script/script.js');
-wsedit.createFile(filePathJs, { ignoreIfExists: true });
-vscode.workspace.applyEdit(wsedit);
-	fs.writeFile(filePathJs.fsPath, jsContent, err => {
-		      	if (err) {
-				return vscode.window.showErrorMessage(
-					"Failed to create structure!"
-				);
-			}
-			vscode.window.showInformationMessage('The structure created!')
- })
+		});
 
 	});
 
@@ -149,7 +164,7 @@ vscode.workspace.applyEdit(wsedit);
 }
 exports.activate = activate;
 
-// this method is called when your extension is deactivated
+
 function deactivate() {}
 
 module.exports = {

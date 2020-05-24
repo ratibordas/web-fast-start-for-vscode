@@ -2,14 +2,19 @@
 
 This extension allows you to create a basic structure for your website. Structure includes:
 
-index.html
-style.css
-script.js
+* index.html
+* style/style.css
+* script/script.js
 
-and some code for an easy start, inside those files.
+
 
 ## How to use
 
-Use command "Web Fast Start" in Command Palette into your workspace.
+1. Open Extensions and type "Web Fast Start" in the search panel, press to install
+2. Use command "Web Fast Start" in Command Palette into your empty workspace.
 
+Also, you can add some useful code in your style.css and script.js. Just use the command again.
+
+
+### Enjoy!
 

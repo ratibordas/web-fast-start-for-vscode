@@ -4,10 +4,7 @@
 	"description": "The fast creating a basic structure for your website",
 	"version": "1.0.0",
 	"publisher": "ratibor",
-	"galleryBanner": {
-        "color": "#0000FF",
-        "theme": "dark"
-    },
+	"icon": "icon.png",
 	"author": {
     "name": "Ratibor Shugaev"
   },
